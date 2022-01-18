@@ -144,11 +144,63 @@ if (!isset($_SESSION['loggedin'])) {
                             
                         </div>
                     </div> 
+
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" style="width:300;height:200px;"src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-gallery1-2021_FMT_WHH?wid=750&hei=778&fmt=jpeg&qlt=80&.v=1617122866000" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body ">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">Iphon 12</h5>
+                                    <!-- Product price-->
+                                </div>
+                                <p style="text-indent:10px;">มือถือหายแถวติก IF มหาวิทยาลัยบูรพา<p>
+                                <div class="text-left">
+                                   วันที่ 04-20-2021
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">รายละเอียด</a></div>
+                            </div>
+                            
+                        </div>
+                    </div> 
+
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" style="width:300;height:200px;"src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-gallery1-2021_FMT_WHH?wid=750&hei=778&fmt=jpeg&qlt=80&.v=1617122866000" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body ">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">Iphon 12</h5>
+                                    <!-- Product price-->
+                                </div>
+                                <p style="text-indent:10px;">มือถือหายแถวติก IF มหาวิทยาลัยบูรพา<p>
+                                <div class="text-left">
+                                   วันที่ 04-20-2021
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">รายละเอียด</a></div>
+                            </div>
+                            
+                        </div>
+                    </div> 
+
+                    
                     
                 </div>
+                
 
                 
             </div>
+            
           
             
             

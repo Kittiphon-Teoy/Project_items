@@ -1,4 +1,13 @@
+<?php
+session_start();
 
+if (!isset($_SESSION['loggedin'])) {
+    $username = $_SESSION['username'];
+  header("location: login.php");
+} else {
+  //do nothing
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,10 +35,10 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">บทความ</a></li>
-                        
-                        
-                    </ul>
-                  
+                     </ul>
+                    
+
+                     <i class="bi bi-person-circle"></i> <b><?php echo $_SESSION["username"]; ?></b>  &nbsp; &nbsp;
                     <form class="d-flex" action="db/logout.php">
                         <button class="btn btn-outline-danger"  type="submit">
                         <i class="bi bi-box-arrow-in-left"></i>
@@ -55,79 +64,166 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">แจ้งพบของหาย</a></li>
-                <li><a class="dropdown-item" href="#">แจ้งเจอของหาย</a></li>
+                <li><a class="dropdown-item" href="create_lost.php">แจ้งเจอของหาย</a></li>
             </ul>
             <a class="btn btn-warning" href="se.php" role="button">แก้ไขข้อมูลส่วนตัว</a>
         </div>
-       
-        <form action="search.php" method="POST" class="d-flex">
-          <input class="me-2" type="text" name="" placeholder=" ค้นหา..." aria-label="Search">
+        
+        <?php $q = (isset($_GET['q']) ? $_GET['q'] : ''); ?>
+        <form action="user_info.php" method="get" class="d-flex">
+          <input class="me-2" type="text" name="q" >
           <button class="btn btn-outline-success" type="submit">ค้นหา</button>
-          
         </form>
         <h5 align='left'><i class='fas fa-user' style='font-size:36px'></i> <b>รายการแจ้งของหาย <a class="btn btn-outline-info" href="#" role="button">สลับรายการ</a></b></h5>
+         </div>
+         <!-- ------------------search----------------- -->
+<?php
+if($q==''){
+            
+        // connect database 
+      require_once('db/connection.php');
+
+      $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+      $mysqli->set_charset("utf8");
+
+      // check connection error 
+      if ($mysqli->connect_errno) {
+      echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+      } else {
+      // connect success, do nothng
+      }
+
+      // select data from tables
+      // $limit = ($_GET['limit']<>"")? $_GET['limit'] : 10;
+      $sql = "SELECT *
+        FROM item_lost il INNER JOIN users u
+        ON user_id = u.ID_users 
+        ORDER BY date DESC";
+      $result = $mysqli->query($sql);
+
+      if (!$result) {
+        echo ("Error: ". $mysqli->error);
         
-        </div>
+      } else {
+      ?>
+
+      
+
+    <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-left">
+      <?php while($row = $result->fetch_object()){ ?>
         
         
             <!-- card -->
-            <div class="container px-4 px-lg-5 mt-5">
-                
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-left">
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" style="width:300;height:200px;"src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body ">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Iphon 13</h5>
-                                    <!-- Product price-->
-                                </div>
-                                <p style="text-indent:10px;">มือถือหายแถวตึก Kb มหาวิทยาลัยบูรพา<p>
-                                <div class="text-left">
-                                   วันที่ 16-20-2021
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">รายละเอียด</a></div>
-                            </div>
-                            
-                        </div>
-                    </div> 
-                    
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" style="width:300;height:200px;"src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-gallery1-2021_FMT_WHH?wid=750&hei=778&fmt=jpeg&qlt=80&.v=1617122866000" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body ">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Iphon 12</h5>
-                                    <!-- Product price-->
-                                </div>
-                                <p style="text-indent:10px;">มือถือหายแถวติก IF มหาวิทยาลัยบูรพา<p>
-                                <div class="text-left">
-                                   วันที่ 04-20-2021
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">รายละเอียด</a></div>
-                            </div>
-                            
-                        </div>
-                    </div> 
-                    
-                </div>
-
-                
-            </div>
-          
             
+                
+                
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" style="width:300;height:200px;"src="upload/<?php echo $row->image ?>" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body ">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder"><?php echo $row->name ?></h5>
+                                    <!-- Product price-->
+                                </div>
+                                <p style="text-indent:10px;"><?php echo $row->title ?><p>
+                                <div class="text-left">
+                                   วันที่-เวลา <?php echo $row->date ?>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
+                            </div>
+                            
+                        </div>
+                    </div> 
+                
+            
+      <?php
+      }
+      
+      ?>
+      <?php
+      
+    }
+}else if($q!=''){
+     // connect database 
+     require_once('db/connection.php');
+
+     $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+     $mysqli->set_charset("utf8");
+
+     // check connection error 
+     if ($mysqli->connect_errno) {
+     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+     } else {
+     // connect success, do nothng
+     }
+
+     // select data from tables
+     // $limit = ($_GET['limit']<>"")? $_GET['limit'] : 10;
+
+     
+     $sql = "SELECT *
+       FROM item_lost il INNER JOIN users u
+       ON user_id = u.ID_users 
+       WHERE title LIKE '%$q%' OR name LIKE '%$q%'
+       ORDER BY date DESC";
+     $result = $mysqli->query($sql);
+
+     if (!$result) {
+       echo ("Error: ". $mysqli->error);
+       
+     } else {
+     ?>
+
+     
+
+     <div class="container px-4 px-lg-5 mt-5">
+                
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-left">
+     <?php while($row = $result->fetch_object()){ ?>
+        <!-- card -->
+        
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" style="width:300;height:200px;"src="upload/<?php echo $row->image ?>" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body ">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder"><?php echo $row->name ?></h5>
+                                    <!-- Product price-->
+                                </div>
+                                    <p style="text-indent:10px;"><?php echo $row->title ?><p>
+                                <div class="text-left">
+                                   วันที่-เวลา <?php echo $row->date ?>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
+                            </div>
+                            
+                        </div>
+                    </div> 
+     </div>
+            
+            <?php
+            }
+            ?>
+            <?php
+     }
+            }
+       
+?>
+
+
             
         </section>
         <!-- Footer-->
@@ -138,5 +234,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        
+        
     </body>
 </html>
