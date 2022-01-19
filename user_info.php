@@ -66,7 +66,7 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a class="dropdown-item" href="#">แจ้งพบของหาย</a></li>
                 <li><a class="dropdown-item" href="create_lost.php">แจ้งเจอของหาย</a></li>
             </ul>
-            <a class="btn btn-warning" href="se.php" role="button">แก้ไขข้อมูลส่วนตัว</a>
+            <a class="btn btn-warning" href="user_edit.php" role="button">แก้ไขข้อมูลส่วนตัว</a>
         </div>
         
         <?php $q = (isset($_GET['q']) ? $_GET['q'] : ''); ?>
@@ -95,9 +95,11 @@ if($q==''){
 
       // select data from tables
       // $limit = ($_GET['limit']<>"")? $_GET['limit'] : 10;
+      $user_id = $_SESSION['user_id'];
       $sql = "SELECT *
         FROM item_lost il INNER JOIN users u
         ON user_id = u.ID_users 
+        WHERE u.ID_users = $user_id
         ORDER BY date DESC";
       $result = $mysqli->query($sql);
 
@@ -137,6 +139,15 @@ if($q==''){
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
+                                
+                               
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-warning mt-auto" href="edit_item_lost.php?id=<?php echo $row->ID_Item?>">แก้ไข</a>
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <a class="btn btn-danger mt-auto" href="db/delete_item_lost.php?id=<?php echo $row->ID_Item?>">ลบ</a>
+                                </div>
                             </div>
                             
                         </div>
@@ -208,6 +219,13 @@ if($q==''){
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
+                             </div>
+                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-warning mt-auto" href="edit_item_lost.php?id=<?php echo $row->ID_Item?>">แก้ไข</a>
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <a class="btn btn-danger mt-auto" href="db/delete_item_lost.php?id=<?php echo $row->ID_Item?>">ลบ</a>
+                                </div>
                             </div>
                             
                         </div>

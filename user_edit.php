@@ -20,7 +20,7 @@ if (!isset($_SESSION['loggedin'])) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-        
+    
     </head>
     <body >
         <!-- Navigation-->
@@ -63,62 +63,70 @@ if (!isset($_SESSION['loggedin'])) {
       </header>
         <!-- Section-->
         <section class="py-5">
-        
-        
-        <section class="py-5 text-center container">
+
+        <!-- database -->
+<?php
+  // connect database 
+    require_once('db/connection.php');
+    $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+    $mysqli->set_charset("utf8");
+
+    $user_id = $_SESSION['user_id'];
+     
+      $sql = "SELECT *
+      FROM users
+      WHERE ID_users = ? ";
+
+      $stmt = $mysqli->prepare($sql);
+      $stmt->bind_param("i",$user_id);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      $row = $result->fetch_object();
+?>
+    <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">ลงทะเบียนแจ้งของหาย</h1>
+                <h1 class="fw-light">แก้ไขข้อมูลส่วนตัว</h1>
                 <hr>
-                <form action="db/save_lost.php" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="user_id" value= "<?php echo  $_SESSION['user_id'] ?>">
+               
+                <form action="db/save_edit_users.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="user_id" value= "<?php echo  $user_id ?>">
 
-                    <div class="mb-3" >
-                        <label for="image" class="form-label">Image</label>
-                        <input type="file" accept="image/*" id="imgInput" name="file" class="form-control">
-                        <img id="previewImg" class="img-fluid rounded" />
+                    <div  align="left" class="mb-3 ">
+                        <label for="title" class="form-label"><i class="bi bi-person-circle"></i><b>Username:</b></label>
+                        <input type="text" name="user_name" required class="form-control"  value= "<?php echo $row->username;?>" maxlength="45" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Name</label>
-                        <input type="text" name="name" required class="form-control"  placeholder="ชื่อสิ่งของ..." maxlength="45" required>
+                    <div  align="left" class="mb-3">
+                        <label for="title" class="form-label"><i class="bi bi-person-fill"></i><b>Name:</b></label>
+                        <input type="text" name="name" required class="form-control"  value= "<?php echo $row->user_name;?>" maxlength="45" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" required class="form-control"  placeholder="ชื่อหัวข้อ..." maxlength="250" required>
+                    <div  align="left" class="mb-3">
+                        <label for="title" class="form-label"><i class="bi bi-person-fill"></i><b>Surname:</b></label>
+                        <input type="text" name="surname" required class="form-control"  value= "<?php echo $row->user_surname;?>" maxlength="45" required>
                     </div>
-                    <div class="mb-3">
-                    <label for="updatetime">Date</label>
-                    <input type="datetime-local" class="form-control" placeholder="Enter Createtime" name="date">
-                       
+                    <div  align="left" class="mb-3">
+                        <label for="title" class="form-label"><i class="bi bi-envelope-fill"></i><b>E-mail:</b></label>
+                        <input type="text" name="email" required class="form-control"  value= "<?php echo $row->email;?>" maxlength="45" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="content" class="form-label">Detail</label>
-                        <textarea class="form-control" required name="detail" rows="10" placeholder="รายละเอียด..." maxlength="250" required></textarea>
+                    <div  align="left" class="mb-3">
+                        <label for="title" class="form-label"><i class="bi bi-telephone-fill"></i><b>Phone:</b></label>
+                        <input type="text" name="phone" required class="form-control"  value= "<?php echo $row->phone;?>" maxlength="45" required>
                     </div>
-                    <div align="left">
-                        <h5><u>ค่าตอบแทน</u></h5>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="reward" id="inlineRadio1" value="ไม่ระบุ" checked>
-                            <label class="form-check-label" for="inlineRadio1">ไม่ระบุ</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="reward" id="inlineRadio2" value="มี">
-                             <label class="form-check-label" for="inlineRadio2">มีค่าตอบแทน</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="reward" id="inlineRadio2" value="ไม่มี">
-                             <label class="form-check-label" for="inlineRadio2">ไม่มีค่าตอบแทน</label>
-                        </div>
-                    </div>
+                
                     
-
-                    <button class="btn btn-success" type="submit" name="submit">Create</button>
+                    <button class="btn btn-success" type="submit" name="submit">ตกลง</button>
+                    <div align="left">
+                    <a href="user_info.php" class="btn btn-outline-info active " role="button" aria-pressed="true">ย้อนกลับ</a>
+                    </div>
                 </form>
             </div>
         </div>
     </section>   
-            
-        </section>
+     
+        
+
+
+    </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">จัดทำโดย &copy; นาย กิตติภณ ถนอมสุขสันต์ 61160086</p></div>
