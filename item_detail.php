@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['loggedin'])) {
-    $username = $_SESSION['username'];
-  header("location: login.php");
-} else {
-  //do nothing
-}
+// if (!isset($_SESSION['loggedin'])) {
+//     $username = $_SESSION['username'];
+//   header("location: login.php");
+// } else {
+//   //do nothing
+// }
 ?>
 
 <!DOCTYPE html>
@@ -42,13 +42,7 @@ if (!isset($_SESSION['loggedin'])) {
                                 <li><a class="dropdown-item" href="#!">แจ้งพบของหาย</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">แสดงรายการ</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">แสดงการแจ้งหายของหาย</a></li>
-                                <li><a class="dropdown-item" href="#!">แสดงการแจ้งพบของหาย</a></li>
-                            </ul>
-                        </li>
+                        
                     </ul>
                     <form class="d-flex" action="user_info.php">
                         <button class="btn btn-outline-dark"  type="submit">
@@ -114,7 +108,7 @@ if(isset($_REQUEST['id'])){
                 <h5>reward: <?php echo $row->reward ?></h5>
 
                 <hr>
-                <a class="btn btn-secondary" href="user_info.php"><i class="bi bi-arrow-left"></i> Go back</a>
+                <a class="btn btn-secondary" href="javascript:history.back()"><i class="bi bi-arrow-left"></i> Go back</a>
             </div>
         </div>
     </section>

@@ -28,9 +28,9 @@
         $_SESSION['user_group'] = $row->user_group;
     } 
           if($_SESSION['user_group'] == "U"){
-            header("location: ../home.php"); //เเยกuser
+            header("location: ../index.php"); //เเยกuser
           }elseif($_SESSION['user_group'] == "A"){
-            header("location: ../home.php"); //admin
+            header("location: ../index.php"); //admin
           }
     
       exit(0);
@@ -38,6 +38,6 @@
       //array_push($errors, "Username or Password is incorrect");
       $_SESSION['error'] = "Wrong Username or Password";
      
-      header("location: ../home.php");
+      header("location: ../index.php");
     }
     ?>

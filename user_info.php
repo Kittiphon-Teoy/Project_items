@@ -50,11 +50,14 @@ if (!isset($_SESSION['loggedin'])) {
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark  py-5"  >
-           
+        <header class="bg-dark  py-4"  >
+        <br>
       </header>
         <!-- Section-->
+       
+        <marquee bgcolor="#CE6F5B" onmouseover="this.stop();" onmouseout="this.start();"><i class="bi bi-bell-fill"></i>โปรดระมัดระวังมิจฉาชิพ.. การพบเจอหรือการส่งของหายโปรดขอข้อมูลเพื่อยืนยันตัวตนทุกครั้ง</marquee>
         <section class="py-5">
+            
         <!-- search -->
         <div class="container ">
         <h2 align='center'><i class='fas fa-user' style='font-size:36px'></i><b><u> ข้อมูลบัญชี</b></u></h2>
@@ -64,7 +67,7 @@ if (!isset($_SESSION['loggedin'])) {
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">แจ้งพบของหาย</a></li>
-                <li><a class="dropdown-item" href="create_lost.php">แจ้งเจอของหาย</a></li>
+                <li><a class="dropdown-item" href="create_lost.php">แจ้งของหาย</a></li>
             </ul>
             <a class="btn btn-warning" href="user_edit.php" role="button">แก้ไขข้อมูลส่วนตัว</a>
         </div>

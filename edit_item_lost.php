@@ -35,22 +35,18 @@ if (!isset($_SESSION['loggedin'])) {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">บริการแจ้ง</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">แจ้งหายของหาย</a></li>
                                 <li><a class="dropdown-item" href="#!">แจ้งพบของหาย</a></li>
+                                <li><a class="dropdown-item" href="create_lost.php">แจ้งของหาย</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">แสดงรายการ</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">แสดงการแจ้งหายของหาย</a></li>
-                                <li><a class="dropdown-item" href="#!">แสดงการแจ้งพบของหาย</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex" action="login.php">
-                        <button class="btn btn-outline-dark"  type="submit">
+                     </ul>
+                    
+
+                     <i class="bi bi-person-circle"></i> <b><?php echo $_SESSION["username"]; ?></b>  &nbsp; &nbsp;
+                    <form class="d-flex" action="db/logout.php">
+                        <button class="btn btn-outline-danger"  type="submit">
                         <i class="bi bi-box-arrow-in-left"></i>
-                            Login
+                            Logout
                         
                         </button>
                     </form>
@@ -136,7 +132,7 @@ if(isset($_REQUEST['id'])){
                     </div>
                     <button class="btn btn-success" type="submit" name="submit">ตกลง</button>
                     <div align="left">
-                    <a href="user_info.php" class="btn btn-outline-info active " role="button" aria-pressed="true">ย้อนกลับ</a>
+                    <a href="javascript:history.back()" class="btn btn-outline-info active " role="button" aria-pressed="true">ย้อนกลับ</a>
                     </div>
                 </form>
             </div>
