@@ -18,7 +18,7 @@ if (isset($_REQUEST['id'])) {
     $stmt->execute();
 
     echo "<script> alert('ลบบทความแล้ว') </script>";
-    header("Refresh:0; url=index2.php");
+    header("Refresh:0; ../user_info.php");
 }else {
     header("location: ../user_info.php");
 }

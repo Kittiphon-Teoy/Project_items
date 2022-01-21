@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <title>Sign Up Form by Colorlib</title>
 
   <!-- Bootstrap icons-->
@@ -22,10 +23,10 @@
                    <a href="index.php" class="col-xs-12 .col-md-8" ><h1><i class="bi bi-house-fill"></i>กลับสู่หน้าแรก</h1></a>
                       <h2 class="form-title">Sign up</h2>
                       <!-- --form-- -->
-                        <form method="POST" class="register-form" id="register-form" action="db/register_db.php">
+                        <form method="POST" class="register-form" id="register-form" action="db/register_db.php" onsubmit="return formValidation()">
                             <div class="form-group">
                                 <label for="username"><i class="bi bi-person-circle"></i></label>
-                                <input type="text" name="username" id="username" placeholder="Username"/>
+                                <input type="text" name="username" id="username" placeholder="Username" />
                             </div>
                             <div class="form-group">
                                 <label for="name"><i class="bi bi-person-fill"></i></label>
@@ -41,7 +42,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="phone"><i class="bi bi-telephone-fill"></i></label>
-                                <input type="text" name="phone" id="phone" placeholder="Phone" maxlength="10"/>
+                                <input type="tel" name="phone" id="phone" placeholder="Phone" maxlength="10"/>
                             </div>
                             <div class="form-group">
                                 <label for="password"><i class="bi bi-lock-fill"></i></label>
@@ -65,3 +66,4 @@
                 </div>
             </div>
         </section>
+        <script src= "js/validation.js"></script> 

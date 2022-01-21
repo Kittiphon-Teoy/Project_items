@@ -158,12 +158,8 @@ if($q==''){
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-left">
       <?php while($row = $result->fetch_object()){ ?>
         
-        
             <!-- card -->
-            
-                
-                
-                    <div class="col mb-5">
+                 <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
                             <img class="card-img-top" style="width:300;height:200px;"src="upload/<?php echo $row->image ?>" alt="..." />
@@ -192,8 +188,6 @@ if($q==''){
                         </div>
                         
                     </div> 
-                
-            
       <?php
       }
       
@@ -239,8 +233,8 @@ if($q==''){
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-left">
      <?php while($row = $result->fetch_object()){ ?>
         <!-- card -->
-        
-                    <div class="col mb-5">
+         <!-- card -->
+         <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
                             <img class="card-img-top" style="width:300;height:200px;"src="upload/<?php echo $row->image ?>" alt="..." />
@@ -251,21 +245,24 @@ if($q==''){
                                     <h5 class="fw-bolder"><?php echo $row->name ?></h5>
                                     <!-- Product price-->
                                 </div>
-                                    <p style="text-indent:10px;"><?php echo $row->title ?><p>
+                                <p style="text-indent:10px;"><?php echo $row->title ?><p>
                                 <div class="text-left">
                                    วันที่-เวลา <?php echo $row->date ?>
+                                   
                                    <b>Post by :</b> <a  href="#"  data-bs-toggle="tooltip" data-bs-placement="right"  data-bs-html="true" title="<b>Name</b>=<?php echo $row->user_name ?><br><b>Surname</b>=<?php echo $row->user_surname ?><br><b>Phone</b>=<?php echo $row->phone ?>"><u style="color:red" ><?php echo $row->username ?></u></a>
+                                  
                                 </div>
                             </div>
                             <!-- Product actions-->
+                            
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
-                             </div>
+                                
+                            </div>
                              
-                            
                         </div>
+                        
                     </div> 
-     </div>
             
             <?php
             }
@@ -299,4 +296,3 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 </script>
-

@@ -103,7 +103,7 @@ if(isset($_REQUEST['id'])){
                     </div>
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" required class="form-control"  value= "<?php echo $row->title ?>" maxlength="250" required>
+                        <input type="text" name="title" required class="form-control"  value= "<?php echo $row->title ?>" maxlength="30" required>
                     </div>
                     <div class="mb-3">
                     <label for="updatetime">Date</label>

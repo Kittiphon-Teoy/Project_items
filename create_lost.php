@@ -80,7 +80,7 @@ if (!isset($_SESSION['loggedin'])) {
                     </div>
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" required class="form-control"  placeholder="ชื่อหัวข้อ..." maxlength="250" required>
+                        <input type="text" name="title" required class="form-control"  placeholder="ชื่อหัวข้อ..." maxlength="30" required>
                     </div>
                     <div class="mb-3">
                     <label for="updatetime">Date</label>
