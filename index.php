@@ -103,7 +103,9 @@ session_start();
 
         <?php 
         if (isset($_SESSION['loggedin'])) { ?>
-        <h5 align='right'><i class='fas fa-user' style='font-size:36px'></i> <i class="bi bi-person-lines-fill"></i> &nbsp; <?php echo $_SESSION["username"]; ?></h5>
+        
+        <h5 align='right'><i class='fas fa-user' style='font-size:36px;'></i> <i class="bi bi-person-lines-fill"></i> &nbsp; <?php echo $_SESSION["username"]; ?></h5>
+        
         <?php
         } else {
           //do nothing
@@ -117,7 +119,7 @@ session_start();
           <input class="me-2" type="text" name="q" >
           <button class="btn btn-outline-success" type="submit">ค้นหา</button>
         </form>
-        <h5 align='left'><i class='fas fa-user' style='font-size:36px'></i> <b>รายการแจ้งของหาย </b><a class="btn btn-outline-info " href="#" role="button" data-bs-toggle="tooltip" data-bs-placement="right"  data-bs-html="true" title="แสดงรายการแจ้งพบของหาย ">สลับรายการ</a></h5>
+        <h5 align='left'><i class='fas fa-user' style='font-size:36px'></i> <b>รายการแจ้งของหาย </b><a class="btn btn-outline-info " href="index2.php" role="button" data-bs-toggle="tooltip" data-bs-placement="right"  data-bs-html="true" title="แสดงรายการแจ้งพบของหาย ">สลับรายการ</a></h5>
          </div>
      
          <!-- ------------------search----------------- -->

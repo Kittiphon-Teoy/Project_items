@@ -61,9 +61,9 @@ if (!isset($_SESSION['loggedin'])) {
         <section class="py-5">
         
         
-        <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
+        <section class="py-5 text-center container" >
+        
+            <div class="col-lg-6 col-md-8 mx-auto" style=" border-radius: 5px; padding: 20px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
                 <h1 class="fw-light">ลงทะเบียนแจ้งของหาย</h1>
                 <hr>
                 <form action="db/save_lost.php" method="POST" enctype="multipart/form-data">
@@ -89,7 +89,7 @@ if (!isset($_SESSION['loggedin'])) {
                     </div>
                     <div class="mb-3">
                         <label for="content" class="form-label">Detail</label>
-                        <textarea class="form-control" required name="detail" rows="10" placeholder="รายละเอียด..." maxlength="250" required></textarea>
+                        <textarea class="form-control" required name="detail" rows="10" placeholder="รายละเอียด..." maxlength="1000" required></textarea>
                     </div>
                     <div align="left">
                         <h5><u>ค่าตอบแทน</u></h5>
@@ -112,7 +112,7 @@ if (!isset($_SESSION['loggedin'])) {
                     </div>
                 </form>
             </div>
-        </div>
+        
     </section>   
             
         </section>

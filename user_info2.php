@@ -73,11 +73,11 @@ if (!isset($_SESSION['loggedin'])) {
         </div>
         
         <?php $q = (isset($_GET['q']) ? $_GET['q'] : ''); ?>
-        <form action="user_info.php" method="get" class="d-flex">
+        <form action="user_info2.php" method="get" class="d-flex">
           <input class="me-2" type="text" name="q" >
           <button class="btn btn-outline-success" type="submit">ค้นหา</button>
         </form>
-        <h5 align='left'><i class='fas fa-user' style='font-size:36px'></i> <b>รายการแจ้งของหาย <a class="btn btn-outline-info" href="user_info2.php" role="button">สลับรายการ</a></b></h5>
+        <h5 align='left'><i class='fas fa-user' style='font-size:36px'></i> <b>รายการแจ้งพบของหาย <a class="btn btn-outline-info" href="user_info.php" role="button">สลับรายการ</a></b></h5>
          </div>
          <!-- ------------------search----------------- -->
 <?php
@@ -100,7 +100,7 @@ if($q==''){
       // $limit = ($_GET['limit']<>"")? $_GET['limit'] : 10;
       $user_id = $_SESSION['user_id'];
       $sql = "SELECT *
-        FROM item_lost il INNER JOIN users u
+        FROM item_found il INNER JOIN users u
         ON user_id = u.ID_users 
         WHERE u.ID_users = $user_id
         ORDER BY date DESC";
@@ -141,15 +141,15 @@ if($q==''){
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail2.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
                                 
                                
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <a class="btn btn-warning mt-auto" href="edit_item_lost.php?id=<?php echo $row->ID_Item?>">แก้ไข</a>
+                                    <a class="btn btn-warning mt-auto" href="edit_item_found.php?id=<?php echo $row->ID_Item?>">แก้ไข</a>
                                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                    <a class="btn btn-danger mt-auto" href="db/delete_item_lost.php?id=<?php echo $row->ID_Item?>">ลบ</a>
+                                    <a class="btn btn-danger mt-auto" href="db/delete_item_found.php?id=<?php echo $row->ID_Item?>">ลบ</a>
                                 </div>
                             </div>
                             
@@ -183,7 +183,7 @@ if($q==''){
 
      
      $sql = "SELECT *
-       FROM item_lost il INNER JOIN users u
+       FROM item_found il INNER JOIN users u
        ON user_id = u.ID_users 
        WHERE title LIKE '%$q%' OR name LIKE '%$q%'
        ORDER BY date DESC";
@@ -199,12 +199,12 @@ if($q==''){
 
      <div class="container px-4 px-lg-5 mt-5">
                 
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-left" >
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-left">
      <?php while($row = $result->fetch_object()){ ?>
         <!-- card -->
          <!-- card -->
-         <div class="col mb-5" >
-                        <div class="card h-100" >
+         <div class="col mb-5">
+                        <div class="card h-100">
                             <!-- Product image-->
                             <img class="card-img-top" style="width:300;height:200px;"src="upload/<?php echo $row->image ?>" alt="..." />
                             <!-- Product details-->
@@ -225,7 +225,7 @@ if($q==''){
                             <!-- Product actions-->
                             
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail2.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
                                 
                             </div>
                              

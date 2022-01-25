@@ -17,15 +17,15 @@ if (isset($_REQUEST['id'])) {
     $id = htmlspecialchars($id);
 
     $sql = "DELETE 
-        FROM item_lost
+        FROM item_found
         WHERE ID_item =?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("s", $id);
     $stmt->execute();
 
     echo "<script> alert('ลบบทความแล้ว') </script>";
-    header("Refresh:0; ../user_info.php");
+    header("Refresh:0; ../user_info2.php");
 }else {
-    header("location: ../user_info.php");
+    header("location: ../user_info2.php");
 }
 ?>

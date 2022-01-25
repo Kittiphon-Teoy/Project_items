@@ -59,78 +59,40 @@ if (!isset($_SESSION['loggedin'])) {
       </header>
         <!-- Section-->
         <section class="py-5">
-
-        <!-- database -->
-<?php
-  // connect database 
-    require_once('db/connection.php');
-    $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
-    $mysqli->set_charset("utf8");
-
-if(isset($_REQUEST['id'])){
-    
-      $uid = trim($_REQUEST['id']);
-      $uid = htmlentities($uid);
-     
-      $sql = "SELECT *
-      FROM item_lost
-      WHERE ID_item = ? ";
-
-      $stmt = $mysqli->prepare($sql);
-      $stmt->bind_param("i",$uid);
-      $stmt->execute();
-      $result = $stmt->get_result();
-      $row = $result->fetch_object();
-?>
-    <section class="py-5 text-center container">
+        
+        
+        <section class="py-5 text-center container" >
         
             <div class="col-lg-6 col-md-8 mx-auto" style=" border-radius: 5px; padding: 20px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-                <h1 class="fw-light">แก้ไขการแจ้งของหาย</h1>
+                <h1 class="fw-light">ลงทะเบียนแจ้งพบของหาย</h1>
                 <hr>
-                <img src="upload/<?php echo $row->image ?>" class="img-fluid rounded mt-4" alt="" >
-                <form action="db/save_edit_lost.php" method="POST" enctype="multipart/form-data">
+                <form action="db/save_found.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="user_id" value= "<?php echo  $_SESSION['user_id'] ?>">
-                <input type="hidden" name="ID_item" value= "<?php echo  $uid ?>">
 
                     <div class="mb-3" >
                         <label for="image" class="form-label">Image</label>
-                        <input type="file" accept="image/*" id="imgInput" name="file" class="form-control"  >
+                        <input type="file" accept="image/*" id="imgInput" name="file" class="form-control">
                         <img id="previewImg" class="img-fluid rounded" />
                     </div>
                     <div class="mb-3">
                         <label for="title" class="form-label">Name</label>
-                        <input type="text" name="name" required class="form-control"  value= "<?php echo $row->name ?>" maxlength="45" required>
+                        <input type="text" name="name" required class="form-control"  placeholder="ชื่อสิ่งของ..." maxlength="45" required>
                     </div>
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" required class="form-control"  value= "<?php echo $row->title ?>" maxlength="30" required>
+                        <input type="text" name="title" required class="form-control"  placeholder="ชื่อหัวข้อ..." maxlength="30" required>
                     </div>
                     <div class="mb-3">
                     <label for="updatetime">Date</label>
-                    <input type="datetime-local" class="form-control"  name="date" required >
+                    <input type="datetime-local" class="form-control" placeholder="Enter Createtime" name="date">
                        
                     </div>
                     <div class="mb-3">
                         <label for="content" class="form-label">Detail</label>
-                        <textarea class="form-control" required name="detail" rows="10"  maxlength="250" required><?php echo $row->detail ?></textarea>
+                        <textarea class="form-control" required name="detail" rows="10" placeholder="รายละเอียด..." maxlength="1000" required></textarea>
                     </div>
-                    <div align="left">
-                        <h5><u>ค่าตอบแทน</u></h5>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="reward" id="check" value="ไม่ระบุ" checked>
-                            <label class="form-check-label" for="inlineRadio1">ไม่ระบุ</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="reward" id="check" value="มี">
-                             <label class="form-check-label" for="inlineRadio2">มีค่าตอบแทน</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="reward" id="check" value="ไม่มี">
-                             <label class="form-check-label" for="inlineRadio2">ไม่มีค่าตอบแทน</label>
-                        </div>
-                        
-                    </div>
-                    <button class="btn btn-success" type="submit" name="submit">ตกลง</button>
+                    
+                    <button class="btn btn-success" type="submit" name="submit">Create</button>
                     <div align="left">
                     <a href="javascript:history.back()" class="btn btn-outline-info active " role="button" aria-pressed="true">ย้อนกลับ</a>
                     </div>
@@ -138,11 +100,7 @@ if(isset($_REQUEST['id'])){
             </div>
         
     </section>   
-<?php
- }else {
-  header("location: user_info.php");
-}
-?>       
+            
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
