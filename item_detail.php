@@ -24,39 +24,65 @@ session_start();
     </head>
     <body >
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top noPrint">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="#!"><h4>Lost-Items</h4></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">บทความ</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="admin/index-articles.php">บทความ</a></li>
+                        <?php  if(isset($_SESSION['loggedin']) AND $_SESSION['user_group'] == "U"){?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">บริการแจ้ง</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">แจ้งหายของหาย</a></li>
                                 <li><a class="dropdown-item" href="#!">แจ้งพบของหาย</a></li>
+                                <li><a class="dropdown-item" href="create_lost.php">แจ้งของหาย</a></li>
                             </ul>
                         </li>
-                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">แสดงรายการ</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#!">แสดงการแจ้งพบของหาย</a></li>
+                                <li><a class="dropdown-item" href="#!">แสดงการแจ้งของหาย</a></li>
+                            </ul>
+                        </li>
+                        <?php
+                        }else{
+                            
+                        }
+                        ?>
                     </ul>
+                    
+
+                    <?php 
+                        if (isset($_SESSION['loggedin'])) { $user_id = $_SESSION['user_id']; ?>
                     <form class="d-flex" action="user_info.php">
                         <button class="btn btn-outline-dark"  type="submit">
                         <i class="bi bi-people-fill"></i>
-                       
                             บัญชี
-                        
-                        </button>
+                       </button>
                     </form>
                     &nbsp;
                     <form class="d-flex" action="db/logout.php">
                         <button class="btn btn-outline-danger"  type="submit">
                         <i class="bi bi-box-arrow-in-left"></i>
                             Logout
-                        
+                         </button>
+                    </form>
+                    <?php
+                    } else { ?>
+                         <form class="d-flex" action="login.php">
+                        <button class="btn btn-outline-dark"  type="submit">
+                        <i class="bi bi-box-arrow-in-left"></i>
+                            Login
                         </button>
                     </form>
+                    <?php
+                    }
+                    ?>    
+
+
                 </div>
             </div>
         </nav>
@@ -104,7 +130,7 @@ if(isset($_REQUEST['id'])){
                     </span>
                     
                     <img src="upload/<?php echo $row->image ?>" class="img-fluid rounded mt-3" alt="" >
-                    <p class="my-4"><?php echo $row->detail ?></p>
+                    <p class="my-4"><?php echo nl2br($row->detail); ?></p>
                 </div>
                 <h5>reward: <?php echo $row->reward ?></h5>
                 <hr>

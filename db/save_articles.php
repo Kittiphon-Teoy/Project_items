@@ -1,5 +1,4 @@
 <?php
-$a="";
 session_start();
 if (!isset($_SESSION['loggedin'])) {
     header("location: login.php");
@@ -9,12 +8,10 @@ require_once('connection.php');
 $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
 $mysqli->set_charset("utf8");
 
-$user_id = $_POST['user_id'];
-$ID_item = $_POST['ID_item'];
-$name = $_POST['name'];
+$id_articles = $_POST['user_id'];
 $title = $_POST['title'];
-
-$detail = $_POST['detail'];
+$date = $_POST['date'];
+$body = $_POST['body'];
 
 
 if(isset($_POST['submit'])){
@@ -28,67 +25,32 @@ if(isset($_POST['submit'])){
             $fileImage = $dir . basename($_FILES["file"]["name"]);
 
             if (move_uploaded_file($_FILES["file"]["tmp_name"], $fileImage)){
-                
             $image = $_FILES["file"]["name"];
           
-           
-        
-          
 
-
-            $sql = "UPDATE item_found
-            SET                        
-            user_id = ?,
-            image = ?,
-            name = ?,
-            title = ?,
-            
-            detail = ?
-            WHERE ID_item = ?";
-            
-            
-            
+            $sql = "INSERT 
+            INTO articles (authors_id,image,title,body,date) 
+            VALUES (?, ?, ?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("ssssss", $user_id,$image, $name,$title,$detail,$ID_item);
+            $stmt->bind_param("sssss", $id_articles,$image,$title,$body,$date);
             $stmt->execute();
-            $a="pass";    
+
 
                 echo "<script> alert('อัพโหลดเสร็จสิ้น') </script>";
-                header("Refresh:0; url=../user_info2.php");
-                
+                header("Refresh:0; url=../admin/admin_info.php");
         }
         } else {
             echo "<script> alert('ไฟล์ภาพของคุณมีขนาดใหญ่เกิน 10 MB') </script>";
             header("Refresh:0;../user_info2.php");
-            
         }
     } else {
         echo "<script> alert('โปรดอัพโหลดเป็นไฟล์ภาพ png และ jpg เท่านั้น') </script>";
         header("Refresh:0;../user_info2.php");
-        
     }  
 }else {
-    
-    header("Refresh:0;../user_info2.php");
-   
+    header("location: ../user_info2.php");
 }
-if($a!="pass"){
-    $sql = "UPDATE item_found
-    SET                        
-    user_id = ?,
-    name = ?,
-    title = ?,
-    date = ?,
-    detail = ?
-    WHERE ID_item = ?";
-    
-    
-    
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("ssssss", $user_id, $name,$title,$date,$detail,$ID_item);
-    $stmt->execute();
-   echo "<script> alert('อัพโหลดเสร็จสิ้น') </script>";
-   header("Refresh:0; url=../user_info2.php");
-}
+
+
 
 ?>

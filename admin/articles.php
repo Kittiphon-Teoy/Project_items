@@ -15,11 +15,11 @@ if (!isset($_SESSION['loggedin'])) {
         <meta name="author" content="" />
         <title>เว็บแจ้งของหาย</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
         
     </head>
     <body >
@@ -32,18 +32,12 @@ if (!isset($_SESSION['loggedin'])) {
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">บทความ</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">บริการแจ้ง</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">แจ้งพบของหาย</a></li>
-                                <li><a class="dropdown-item" href="create_lost.php">แจ้งของหาย</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#!">จัดการผู้ใช้</a></li>
                      </ul>
                     
 
                      <i class="bi bi-person-circle"></i> <b><?php echo $_SESSION["username"]; ?></b>  &nbsp; &nbsp;
-                    <form class="d-flex" action="db/logout.php">
+                    <form class="d-flex" action="../db/logout.php">
                         <button class="btn btn-outline-danger"  type="submit">
                         <i class="bi bi-box-arrow-in-left"></i>
                             Logout
@@ -64,9 +58,9 @@ if (!isset($_SESSION['loggedin'])) {
         <section class="py-5 text-center container" >
         
             <div class="col-lg-6 col-md-8 mx-auto" style=" border-radius: 5px; padding: 20px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-                <h1 class="fw-light">ลงทะเบียนแจ้งพบของหาย</h1>
+                <h1 class="fw-light">เขียนบทความ</h1>
                 <hr>
-                <form action="db/save_found.php" method="POST" enctype="multipart/form-data">
+                <form action="../db/save_articles.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="user_id" value= "<?php echo  $_SESSION['user_id'] ?>">
 
                     <div class="mb-3" >
@@ -74,18 +68,19 @@ if (!isset($_SESSION['loggedin'])) {
                         <input type="file" accept="image/*" id="imgInput" name="file" class="form-control">
                         <img id="previewImg" class="img-fluid rounded" />
                     </div>
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Name</label>
-                        <input type="text" name="name" required class="form-control"  placeholder="ชื่อสิ่งของ..." maxlength="45" required>
-                    </div>
+                   
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" name="title" required class="form-control"  placeholder="ชื่อหัวข้อ..." maxlength="30" required>
                     </div>
-                  
+                    <div class="mb-3">
+                    <label for="updatetime">Date</label>
+                    <input type="datetime-local" class="form-control" placeholder="Enter Createtime" name="date">
+                       
+                    </div>
                     <div class="mb-3">
                         <label for="content" class="form-label">Detail</label>
-                        <textarea class="form-control" required name="detail" rows="10" placeholder="รายละเอียด..." maxlength="1000" required></textarea>
+                        <textarea class="form-control" required name="body" rows="10" placeholder="รายละเอียด..." maxlength="1000" required></textarea>
                     </div>
                     
                     <button class="btn btn-success" type="submit" name="submit">Create</button>

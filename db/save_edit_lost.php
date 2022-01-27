@@ -13,7 +13,7 @@ $user_id = $_POST['user_id'];
 $ID_item = $_POST['ID_item'];
 $name = $_POST['name'];
 $title = $_POST['title'];
-$date = $_POST['date'];
+
 $detail = $_POST['detail'];
 $reward = $_POST['reward'];
 
@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
             image = ?,
             name = ?,
             title = ?,
-            date = ?,
+            
             detail = ?,
             reward = ?
             WHERE ID_item = ?";
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
             
             
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("ssssssss", $user_id,$image, $name,$title,$date,$detail,$reward,$ID_item);
+            $stmt->bind_param("sssssss", $user_id,$image, $name,$title,$detail,$reward,$ID_item);
             $stmt->execute();
             $a="pass";    
 

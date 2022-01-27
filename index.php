@@ -36,7 +36,8 @@ session_start();
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">บทความ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="admin/index-articles.php">บทความ</a></li>
+                        <?php  if(isset($_SESSION['loggedin']) AND $_SESSION['user_group'] == "U"){?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">บริการแจ้ง</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -51,7 +52,13 @@ session_start();
                                 <li><a class="dropdown-item" href="#!">แสดงการแจ้งของหาย</a></li>
                             </ul>
                         </li>
+                        <?php
+                        }else{
+                            
+                        }
+                        ?>
                     </ul>
+                    
 
                     <?php 
                         if (isset($_SESSION['loggedin'])) { $user_id = $_SESSION['user_id']; ?>
@@ -116,7 +123,7 @@ session_start();
         
         <?php $q = (isset($_GET['q']) ? $_GET['q'] : ''); ?>
         <form action="index.php" method="get" class="d-flex">
-          <input class="me-2" type="text" name="q" >
+          <input class="me-2" type="text" name="q"  placeholder="ค้นหารายการ">
           <button class="btn btn-outline-success" type="submit">ค้นหา</button>
         </form>
         <h5 align='left'><i class='fas fa-user' style='font-size:36px'></i> <b>รายการแจ้งของหาย </b><a class="btn btn-outline-info " href="index2.php" role="button" data-bs-toggle="tooltip" data-bs-placement="right"  data-bs-html="true" title="แสดงรายการแจ้งพบของหาย ">สลับรายการ</a></h5>

@@ -11,7 +11,7 @@ $mysqli->set_charset("utf8");
 $user_id = $_POST['user_id'];
 $name = $_POST['name'];
 $title = $_POST['title'];
-$date = $_POST['date'];
+
 $detail = $_POST['detail'];
 $reward = $_POST['reward'];
 
@@ -30,15 +30,15 @@ if(isset($_POST['submit'])){
           
 
             $sql = "INSERT 
-            INTO item_lost (user_id,image,name,title,date,detail,reward) 
-            VALUES (?, ?, ?, ?, ?, ?, ?)";
+            INTO item_lost (user_id,image,name,title,detail,reward) 
+            VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("sssssss", $user_id,$image, $name,$title,$date,$detail,$reward);
+            $stmt->bind_param("ssssss", $user_id,$image, $name,$title,$detail,$reward);
             $stmt->execute();
 
 
-                echo "<script> alert('อัพโหลดเสร็จสิ้น') </script>";
-                header("Refresh:0; url=../user_info.php");
+                // echo "<script> alert('อัพโหลดเสร็จสิ้น') </script>";
+                // header("Refresh:0; url=../user_info.php");
         }
         } else {
             echo "<script> alert('ไฟล์ภาพของคุณมีขนาดใหญ่เกิน 10 MB') </script>";

@@ -12,11 +12,11 @@ session_start();
         <meta name="author" content="" />
         <title>เว็บแจ้งของหาย</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
         <!-- print -->
         <link rel="stylesheet" type="text/css" href="css/print.css">
         
@@ -53,18 +53,17 @@ session_start();
                         }
                         ?>
                     </ul>
-                    
 
                     <?php 
                         if (isset($_SESSION['loggedin'])) { $user_id = $_SESSION['user_id']; ?>
-                    <form class="d-flex" action="user_info.php">
+                    <form class="d-flex" action="../user_info.php">
                         <button class="btn btn-outline-dark"  type="submit">
                         <i class="bi bi-people-fill"></i>
                             บัญชี
                        </button>
                     </form>
                     &nbsp;
-                    <form class="d-flex" action="db/logout.php">
+                    <form class="d-flex" action="../db/logout.php">
                         <button class="btn btn-outline-danger"  type="submit">
                         <i class="bi bi-box-arrow-in-left"></i>
                             Logout
@@ -72,7 +71,7 @@ session_start();
                     </form>
                     <?php
                     } else { ?>
-                         <form class="d-flex" action="login.php">
+                         <form class="d-flex" action="../login.php">
                         <button class="btn btn-outline-dark"  type="submit">
                         <i class="bi bi-box-arrow-in-left"></i>
                             Login
@@ -93,7 +92,7 @@ session_start();
 <!-- data base -->
 <?php
     // connect database 
-    require_once('db/connection.php');
+    require_once('../db/connection.php');
     $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
     $mysqli->set_charset("utf8");
 if(isset($_REQUEST['id'])){
@@ -102,10 +101,10 @@ if(isset($_REQUEST['id'])){
      
 
       $sql = "SELECT *
-      FROM item_found
+      FROM articles
       INNER JOIN users
-      ON user_id = users.ID_users
-      WHERE ID_Item = ? ";
+      ON authors_id = users.ID_users
+      WHERE ID_articles  = ? ";
 
       $stmt = $mysqli->prepare($sql);
       $stmt->bind_param("s",$uid);
@@ -113,7 +112,7 @@ if(isset($_REQUEST['id'])){
       $result = $stmt->get_result();
       $row = $result->fetch_object();
 ?>
-       <center><h1><b><u style="color:red">ประกาศพบของหาย</u></b></h1></center>
+       <center><h1><b><u style="color:red">ประกาศของหาย</u></b></h1></center>
 
       <section class="py-5 container" id="printJS-form">
       
@@ -121,24 +120,22 @@ if(isset($_REQUEST['id'])){
         <div class="row py-lg-5" >
             <div class="col-lg-6 col-md-8 mx-auto">
                
-                <h2 class="fw-light"><?php echo $row->name ?></h2>
+                <h2 class="fw-light"><?php echo $row->title ?></h2>
                 <hr>
                 <div >
-                    <span class="noPrint">Post by <?php echo $row->user_name ?> at</span>
+                    <span class="noPrint">Post by Admin-<b><?php echo $row->user_name ?></b> at</span>
                     <span class="text-muted noPrint">
                     <?php echo $row->date ?>
                     </span>
                     
-                    <img src="upload/<?php echo $row->image ?>" class="img-fluid rounded mt-3" alt="" >
-                    <p class="my-4"><?php echo nl2br($row->detail);  ?></p>
+                    <img src="../upload/<?php echo $row->image ?>" class="img-fluid rounded mt-3" alt="" >
+                    <p class="my-4"><?php echo nl2br($row->body); ?></p>
                 </div>
-               
+                
                 <hr>
    
                 <a class="btn btn-secondary noPrint" href="javascript:history.back()"><i class="bi bi-arrow-left"></i> Go back</a>
-                <div align='right'>
-                <a class="btn btn-info noPrint" id="print"href="" onclick="window.print()" data-bs-toggle="tooltip" data-bs-placement="right"  data-bs-html="true" title="พิมพ์เอกสาร"><i class="bi bi-printer noPrint"></i> Print</a>
-                <div>
+                
             </div>
             
         </div>

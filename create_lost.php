@@ -82,11 +82,7 @@ if (!isset($_SESSION['loggedin'])) {
                         <label for="title" class="form-label">Title</label>
                         <input type="text" name="title" required class="form-control"  placeholder="ชื่อหัวข้อ..." maxlength="30" required>
                     </div>
-                    <div class="mb-3">
-                    <label for="updatetime">Date</label>
-                    <input type="datetime-local" class="form-control" placeholder="Enter Createtime" name="date">
-                       
-                    </div>
+                    
                     <div class="mb-3">
                         <label for="content" class="form-label">Detail</label>
                         <textarea class="form-control" required name="detail" rows="10" placeholder="รายละเอียด..." maxlength="1000" required></textarea>

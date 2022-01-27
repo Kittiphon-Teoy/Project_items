@@ -105,11 +105,7 @@ if(isset($_REQUEST['id'])){
                         <label for="title" class="form-label">Title</label>
                         <input type="text" name="title" required class="form-control"  value= "<?php echo $row->title ?>" maxlength="30" required>
                     </div>
-                    <div class="mb-3">
-                    <label for="updatetime">Date</label>
-                    <input type="datetime-local" class="form-control"  name="date" required >
-                       
-                    </div>
+                   
                     <div class="mb-3">
                         <label for="content" class="form-label">Detail</label>
                         <textarea class="form-control" required name="detail" rows="10"  maxlength="1000" required><?php echo $row->detail ?></textarea>

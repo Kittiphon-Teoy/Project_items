@@ -105,11 +105,7 @@ if(isset($_REQUEST['id'])){
                         <label for="title" class="form-label">Title</label>
                         <input type="text" name="title" required class="form-control"  value= "<?php echo $row->title ?>" maxlength="30" required>
                     </div>
-                    <div class="mb-3">
-                    <label for="updatetime">Date</label>
-                    <input type="datetime-local" class="form-control"  name="date" required >
-                       
-                    </div>
+                    
                     <div class="mb-3">
                         <label for="content" class="form-label">Detail</label>
                         <textarea class="form-control" required name="detail" rows="10"  maxlength="250" required><?php echo $row->detail ?></textarea>
@@ -117,15 +113,15 @@ if(isset($_REQUEST['id'])){
                     <div align="left">
                         <h5><u>ค่าตอบแทน</u></h5>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="reward" id="check" value="ไม่ระบุ" checked>
+                            <input class="form-check-input" type="radio" name="reward" id="check" value="ไม่ระบุ" <?php if($row->reward =='ไม่ระบุ') {echo 'checked';} ?>>
                             <label class="form-check-label" for="inlineRadio1">ไม่ระบุ</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="reward" id="check" value="มี">
+                            <input class="form-check-input" type="radio" name="reward" id="check" value="มี" <?php if($row->reward =='มี') {echo 'checked';} ?>>
                              <label class="form-check-label" for="inlineRadio2">มีค่าตอบแทน</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="reward" id="check" value="ไม่มี">
+                            <input class="form-check-input" type="radio" name="reward" id="check" value="ไม่มี"<?php if($row->reward =='ไม่มี') {echo 'checked';} ?>>
                              <label class="form-check-label" for="inlineRadio2">ไม่มีค่าตอบแทน</label>
                         </div>
                         
