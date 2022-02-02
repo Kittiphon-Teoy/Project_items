@@ -149,7 +149,7 @@ if($q==''){
                                 <div class="text-center">
                                     <a class="btn btn-warning mt-auto" href="edit_item_found.php?id=<?php echo $row->ID_Item?>">แก้ไข</a>
                                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                    <a class="btn btn-danger mt-auto" href="db/delete_item_found.php?id=<?php echo $row->ID_Item?>">ลบ</a>
+                                    <a class="btn btn-danger mt-auto" onclick="return confirm('คุณต้องการที่จะลบรายการหรือไม่?');"href="db/delete_item_found.php?id=<?php echo $row->ID_Item?>">ลบ</a>
                                 </div>
                             </div>
                             
@@ -204,7 +204,7 @@ if($q==''){
         <!-- card -->
          <!-- card -->
          <div class="col mb-5">
-                        <div class="card h-100">
+         <div class="card h-100">
                             <!-- Product image-->
                             <img class="card-img-top" style="width:300;height:200px;"src="upload/<?php echo $row->image ?>" alt="..." />
                             <!-- Product details-->
@@ -217,18 +217,22 @@ if($q==''){
                                 <p style="text-indent:10px;"><?php echo $row->title ?><p>
                                 <div class="text-left">
                                    วันที่-เวลา <?php echo $row->date ?>
-                                   
-                                  
-                                  
                                 </div>
                             </div>
                             <!-- Product actions-->
-                            
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail2.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
                                 
+                               
                             </div>
-                             
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-warning mt-auto" href="edit_item_found.php?id=<?php echo $row->ID_Item?>">แก้ไข</a>
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <a class="btn btn-danger mt-auto" onclick="return confirm('คุณต้องการที่จะลบรายการหรือไม่?');"href="db/delete_item_found.php?id=<?php echo $row->ID_Item?>">ลบ</a>
+                                </div>
+                            </div>
+                            
                         </div>
                         
                     </div> 

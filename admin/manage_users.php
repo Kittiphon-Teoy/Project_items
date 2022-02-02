@@ -51,51 +51,71 @@ if (!isset($_SESSION['loggedin'])) {
         <header class="px-4  px-lg-5 my-5"  >
        
       </header>
+      <?php
+     // connect database 
+      require_once('../db/connection.php');
+
+      $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+      $mysqli->set_charset("utf8");
+
+      // check connection error 
+      if ($mysqli->connect_errno) {
+      echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+      } else {
+      // connect success, do nothng
+      }
+    $user_id = $_SESSION['user_id'];
+      $sql = "SELECT *
+        FROM users
+        ORDER BY ID_users ASC";
+      $result = $mysqli->query($sql);
+
+      if (!$result) {
+        echo ("Error: ". $mysqli->error);
+    } 
+      ?>
+      
+      
         <!-- Section-->
         <section class="py-5">
-        
-        
+        <center><h2><i class="bi bi-file-earmark-person-fill"></i><b>จัดการผู้ใช้</b></h2></center>
+        <div class="container">
+        <a class="btn btn-info" href="javascript:history.back()" role="button">ย้อนกลับ</a>
+        </div>
         <section class="py-5 text-center container" >
         
-            <div class="col-lg-6 col-md-8 mx-auto" style=" border-radius: 5px; padding: 20px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-                <h1 class="fw-light">เขียนบทความ</h1>
-                <hr>
-                <form action="../db/save_articles.php" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="user_id" value= "<?php echo  $_SESSION['user_id'] ?>">
-
-                    <div class="mb-3" >
-                        <label for="image" class="form-label">Image</label>
-                        <input type="file" accept="image/*" id="imgInput" name="file" class="form-control">
-                        <img id="previewImg" class="img-fluid rounded" />
-                    </div>
-                   
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" required class="form-control"  placeholder="ชื่อหัวข้อ..." maxlength="30" required>
-                    </div>
-                  
-                    <div class="mb-3">
-                        <label for="content" class="form-label">Detail</label>
-                        <textarea class="form-control" required name="body" rows="10" placeholder="รายละเอียด..." maxlength="1000" required></textarea>
-                    </div>
-                    
-                    <button class="btn btn-success" type="submit" name="submit">Create</button>
-                    <div align="left">
-                    <a href="javascript:history.back()" class="btn btn-outline-info active " role="button" aria-pressed="true">ย้อนกลับ</a>
-                    </div>
-                </form>
-            </div>
+        <table class="table">
+            <thead class="table-dark"> <!--หัวเรื่อง-->
+                <tr>
+                    <th scope="col">ID_users </th>
+                    <th scope="col">Username</th>
+                    <th scope="col">User_name</th>
+                    <th scope="col">User_surname</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            
+            <tbody>  <!--เนื้อ-->
+            <?php while($row = $result->fetch_object()){ ?>
+                <tr>
+                    <th scope="row"><?php echo $row->ID_users ?></th>
+                    <td><?php echo $row->username ?></td>
+                    <td><?php echo $row->user_name ?></td>
+                    <td><?php echo $row->user_surname ?></td>
+                    <td><?php echo $row->email ?></td>
+                    <td><?php echo $row->phone ?></td>
+                    <td>
+                    <a class="btn btn-outline-danger" onclick="return confirm('คุณต้องการที่จะลบผู้ใช้หรือไม่?');" href="../db/delete_users.php?id=<?php echo $row->ID_users?>" role="button">ลบ</a>
+                    </td>
+                </tr>
+                <?php
+                }
+                ?>
+           </tbody>
+        </table>
         
     </section>   
-            
-        </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">จัดทำโดย &copy; นาย กิตติภณ ถนอมสุขสันต์ 61160086</p></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+</body>
 </html>

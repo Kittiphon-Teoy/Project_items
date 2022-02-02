@@ -112,7 +112,7 @@ if(isset($_REQUEST['id'])){
       $result = $stmt->get_result();
       $row = $result->fetch_object();
 ?>
-       <center><h1><b><u style="color:red">ประกาศของหาย</u></b></h1></center>
+       <center><h1><b><u style="color:red">บทความ</u></b></h1></center>
 
       <section class="py-5 container" id="printJS-form">
       
@@ -120,7 +120,7 @@ if(isset($_REQUEST['id'])){
         <div class="row py-lg-5" >
             <div class="col-lg-6 col-md-8 mx-auto">
                
-                <h2 class="fw-light"><?php echo $row->title ?></h2>
+                <h2 class="fw-light"><b><?php echo $row->title ?></b></h2>
                 <hr>
                 <div >
                     <span class="noPrint">Post by Admin-<b><?php echo $row->user_name ?></b> at</span>

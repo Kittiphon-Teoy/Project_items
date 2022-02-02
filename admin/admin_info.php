@@ -66,7 +66,7 @@ if (!isset($_SESSION['loggedin'])) {
         <h2 align='center'><i class='fas fa-user' style='font-size:36px'></i><b><u> ข้อมูลบัญชี</b></u></h2>
         <div align="right"class="dropdown">
         <a class="btn btn-primary" href="articles.php" role="button">เพิ่มบทความ</a>
-        <a class="btn btn-warning" href="#.php" role="button">จัดการผู้ใช้</a>
+        <a class="btn btn-warning" href="manage_users.php" role="button">จัดการผู้ใช้</a>
         </div>
         <h4>บทความ</h4>
         <?php $q = (isset($_GET['q']) ? $_GET['q'] : ''); ?>
@@ -144,9 +144,9 @@ if($q==''){
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <a class="btn btn-warning mt-auto" href="edit_item_lost.php?id=<?php echo $row->ID_articles?>">แก้ไข</a>
+                                    <a class="btn btn-warning mt-auto" href="edit_articles.php?id=<?php echo $row->ID_articles?>">แก้ไข</a>
                                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                    <a class="btn btn-danger mt-auto" href="db/delete_item_lost.php?id=<?php echo $row->ID_articles?>">ลบ</a>
+                                    <a class="btn btn-danger mt-auto" onclick="return confirm('คุณต้องการที่จะลบบทความหรือไม่?');" href="../db/delete_articles.php?id=<?php echo $row->ID_articles?>">ลบ</a>
                                 </div>
                             </div>
                             
@@ -225,9 +225,9 @@ if($q==''){
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <a class="btn btn-warning mt-auto" href="edit_item_lost.php?id=<?php echo $row->ID_Item?>">แก้ไข</a>
+                                    <a class="btn btn-warning mt-auto" href="edit_articles.php?id=<?php echo $row->ID_Item?>">แก้ไข</a>
                                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                    <a class="btn btn-danger mt-auto" href="db/delete_item_lost.php?id=<?php echo $row->ID_Item?>">ลบ</a>
+                                    <a class="btn btn-danger mt-auto" onclick="return confirm('คุณต้องการที่จะลบบทความหรือไม่?');" href="../db/delete_articles.php?id=<?php echo $row->ID_Item?>">ลบ</a>
                                 </div>
                             </div>
                             

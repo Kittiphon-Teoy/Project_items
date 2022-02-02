@@ -51,6 +51,28 @@ if (!isset($_SESSION['loggedin'])) {
         <header class="px-4  px-lg-5 my-5"  >
        
       </header>
+       <!-- database -->
+<?php
+  // connect database 
+    require_once('../db/connection.php');
+    $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+    $mysqli->set_charset("utf8");
+
+if(isset($_REQUEST['id'])){
+    
+      $uid = trim($_REQUEST['id']);
+      $uid = htmlentities($uid);
+     
+      $sql = "SELECT *
+      FROM articles
+      WHERE ID_articles = ? ";
+
+      $stmt = $mysqli->prepare($sql);
+      $stmt->bind_param("i",$uid);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      $row = $result->fetch_object();
+?>
         <!-- Section-->
         <section class="py-5">
         
@@ -58,11 +80,13 @@ if (!isset($_SESSION['loggedin'])) {
         <section class="py-5 text-center container" >
         
             <div class="col-lg-6 col-md-8 mx-auto" style=" border-radius: 5px; padding: 20px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-                <h1 class="fw-light">เขียนบทความ</h1>
+                <h1 class="fw-light">แก้ไขบทความ</h1>
                 <hr>
-                <form action="../db/save_articles.php" method="POST" enctype="multipart/form-data">
+                <img src="../upload/<?php echo $row->image ?>" class="img-fluid rounded mt-4" alt="" >
+                <form action="../db/save_edit_articles.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="user_id" value= "<?php echo  $_SESSION['user_id'] ?>">
-
+                <input type="hidden" name="ID_article" value= "<?php echo  $uid ?>">
+                <br>
                     <div class="mb-3" >
                         <label for="image" class="form-label">Image</label>
                         <input type="file" accept="image/*" id="imgInput" name="file" class="form-control">
@@ -71,12 +95,12 @@ if (!isset($_SESSION['loggedin'])) {
                    
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" required class="form-control"  placeholder="ชื่อหัวข้อ..." maxlength="30" required>
+                        <input type="text" name="title" required class="form-control" value="<?php echo $row->title ?>" placeholder="ชื่อหัวข้อ..." maxlength="30" required>
                     </div>
                   
                     <div class="mb-3">
                         <label for="content" class="form-label">Detail</label>
-                        <textarea class="form-control" required name="body" rows="10" placeholder="รายละเอียด..." maxlength="1000" required></textarea>
+                        <textarea class="form-control" required name="body" rows="10"  placeholder="รายละเอียด..." maxlength="1000" required><?php echo $row->body ?></textarea>
                     </div>
                     
                     <button class="btn btn-success" type="submit" name="submit">Create</button>
@@ -85,7 +109,11 @@ if (!isset($_SESSION['loggedin'])) {
                     </div>
                 </form>
             </div>
-        
+            <?php
+ }else {
+  header("location: user_info.php");
+}
+?>          
     </section>   
             
         </section>

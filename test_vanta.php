@@ -22,8 +22,7 @@ session_start();
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../css/styles.css" rel="stylesheet" />
-        <!-- vantaJs -->
+        <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
       
@@ -38,8 +37,8 @@ session_start();
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="../index.php">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index-articles.php">บทความ</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="admin/index-articles.php">บทความ</a></li>
                         <?php  if(isset($_SESSION['loggedin']) AND $_SESSION['user_group'] == "U"){?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">บริการแจ้ง</a>
@@ -61,17 +60,18 @@ session_start();
                         }
                         ?>
                     </ul>
+                    
 
                     <?php 
                         if (isset($_SESSION['loggedin'])) { $user_id = $_SESSION['user_id']; ?>
-                    <form class="d-flex" action="../user_info.php">
+                    <form class="d-flex" action="user_info.php">
                         <button class="btn btn-outline-dark"  type="submit">
                         <i class="bi bi-people-fill"></i>
                             บัญชี
                        </button>
                     </form>
                     &nbsp;
-                    <form class="d-flex" action="../db/logout.php">
+                    <form class="d-flex" action="db/logout.php">
                         <button class="btn btn-outline-danger"  type="submit">
                         <i class="bi bi-box-arrow-in-left"></i>
                             Logout
@@ -79,7 +79,7 @@ session_start();
                     </form>
                     <?php
                     } else { ?>
-                         <form class="d-flex" action="../login.php">
+                         <form class="d-flex" action="login.php">
                         <button class="btn btn-outline-dark"  type="submit">
                         <i class="bi bi-box-arrow-in-left"></i>
                             Login
@@ -94,7 +94,7 @@ session_start();
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark  py-5" id="header" >
+        <header class="bg-dark  py-5"  id="header">
             
             <div class="container px-4  px-lg-5 my-5">
                 <div class="text-center text-white">
@@ -108,7 +108,7 @@ session_start();
         <section class="py-5">
         <!-- search -->
         <div class="container ">
-        <h2 align='center'><i class='fas fa-user' style='font-size:36px'></i><b><u> บทความ</b></u></h2>
+        <h2 align='center'><i class='fas fa-user' style='font-size:36px'></i><b><u> รายการแจ้งของหาย</b></u></h2>
 
         <?php 
         if (isset($_SESSION['loggedin'])) { ?>
@@ -124,11 +124,11 @@ session_start();
         
         
         <?php $q = (isset($_GET['q']) ? $_GET['q'] : ''); ?>
-        <form action="index-articles.php" method="get" class="d-flex">
-          <input class="me-2" type="text" name="q" placeholder="ค้นหาบทความ">
+        <form action="index.php" method="get" class="d-flex">
+          <input class="me-2" type="text" name="q"  placeholder="ค้นหารายการ">
           <button class="btn btn-outline-success" type="submit">ค้นหา</button>
         </form>
-       
+        <h5 align='left'><i class='fas fa-user' style='font-size:36px'></i> <b>รายการแจ้งของหาย </b><a class="btn btn-outline-info " href="index2.php" role="button" data-bs-toggle="tooltip" data-bs-placement="right"  data-bs-html="true" title="แสดงรายการแจ้งพบของหาย ">สลับรายการ</a></h5>
          </div>
      
          <!-- ------------------search----------------- -->
@@ -136,7 +136,7 @@ session_start();
 if($q==''){
             
         // connect database 
-      require_once('../db/connection.php');
+      require_once('db/connection.php');
 
       $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
       $mysqli->set_charset("utf8");
@@ -152,8 +152,8 @@ if($q==''){
       // $limit = ($_GET['limit']<>"")? $_GET['limit'] : 10;
       
       $sql = "SELECT *
-         FROM articles il INNER JOIN users u
-       ON authors_id = u.ID_users 
+         FROM item_lost il INNER JOIN users u
+       ON user_id = u.ID_users 
         ORDER BY date DESC";
       $result = $mysqli->query($sql);
 
@@ -173,23 +173,26 @@ if($q==''){
                  <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" style="width:300;height:200px;"src="../upload/<?php echo $row->image ?>" alt="..." />
+                            <img class="card-img-top" style="width:300;height:200px;"src="upload/<?php echo $row->image ?>" alt="..." />
                             <!-- Product details-->
                             <div class="card-body ">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"><?php echo $row->title ?></h5>
+                                    <h5 class="fw-bolder"><?php echo $row->name ?></h5>
                                     <!-- Product price-->
                                 </div>
-                                <br>
+                                <p style="text-indent:10px;"><?php echo $row->title ?><p>
                                 <div class="text-left">
                                    วันที่-เวลา <?php echo $row->date ?>
+                                   
+                                   <b>Post by :</b> <a  href="#"  data-bs-toggle="tooltip" data-bs-placement="right"  data-bs-html="true" title="<b>Name</b>=<?php echo $row->user_name ?><br><b>Surname</b>=<?php echo $row->user_surname ?><br><b>Phone</b>=<?php echo $row->phone ?>"><u style="color:red" ><?php echo $row->username ?></u></a>
+                                  
                                 </div>
                             </div>
                             <!-- Product actions-->
                             
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto container" href="articles_detail.php?id=<?php echo $row->ID_articles?>">อ่าน</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
                                 
                             </div>
                              
@@ -205,7 +208,7 @@ if($q==''){
     }
 }else if($q!=''){
      // connect database 
-     require_once('../db/connection.php');
+     require_once('db/connection.php');
 
      $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
      $mysqli->set_charset("utf8");
@@ -222,9 +225,9 @@ if($q==''){
 
      
      $sql = "SELECT *
-       FROM articles il INNER JOIN users u
-       ON authors_id = u.ID_users 
-       WHERE title LIKE '%$q%' OR date LIKE '%$q%'
+       FROM item_lost il INNER JOIN users u
+       ON user_id = u.ID_users 
+       WHERE title LIKE '%$q%' OR name LIKE '%$q%'
        ORDER BY date DESC";
      $result = $mysqli->query($sql);
 
@@ -245,26 +248,26 @@ if($q==''){
          <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" style="width:300;height:200px;"src="../upload/<?php echo $row->image ?>" alt="..." />
+                            <img class="card-img-top" style="width:300;height:200px;"src="upload/<?php echo $row->image ?>" alt="..." />
                             <!-- Product details-->
                             <div class="card-body ">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"><?php echo $row->title ?></h5>
+                                    <h5 class="fw-bolder"><?php echo $row->name ?></h5>
                                     <!-- Product price-->
                                 </div>
-                                
+                                <p style="text-indent:10px;"><?php echo $row->title ?><p>
                                 <div class="text-left">
                                    วันที่-เวลา <?php echo $row->date ?>
                                    
-                                 
+                                   <b>Post by :</b> <a  href="#"  data-bs-toggle="tooltip" data-bs-placement="right"  data-bs-html="true" title="<b>Name</b>=<?php echo $row->user_name ?><br><b>Surname</b>=<?php echo $row->user_surname ?><br><b>Phone</b>=<?php echo $row->phone ?>"><u style="color:red" ><?php echo $row->username ?></u></a>
                                   
                                 </div>
                             </div>
                             <!-- Product actions-->
                             
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="articles_detail.php?id=<?php echo $row->ID_articles?>">รายละเอียด</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="item_detail.php?id=<?php echo $row->ID_Item?>">รายละเอียด</a></div>
                                 
                             </div>
                              

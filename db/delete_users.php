@@ -17,15 +17,15 @@ if (isset($_REQUEST['id'])) {
     $id = htmlspecialchars($id);
 
     $sql = "DELETE 
-        FROM item_lost
-        WHERE ID_item =?";
+        FROM users
+        WHERE ID_users =?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("s", $id);
     $stmt->execute();
 
-    echo "<script> alert('ลบบทความแล้ว') </script>";
-    header("Refresh:0; javascript:history.back()");
+    echo "<script> alert('ลบผู้ใช้เรียบร้อย') </script>";
+    header("Refresh:0; ../user_info.php");
 }else {
-    header("location: javascript:history.back()");
+    header("location: ../user_info.php");
 }
 ?>
