@@ -57,8 +57,31 @@ if (!isset($_SESSION['loggedin'])) {
         <br>
       </header>
         <!-- Section-->
-       
-        <marquee bgcolor="#CE6F5B" onmouseover="this.stop();" onmouseout="this.start();"><i class="bi bi-bell-fill"></i>โปรดระมัดระวังมิจฉาชิพ.. การพบเจอหรือการส่งของหายโปรดขอข้อมูลเพื่อยืนยันตัวตนทุกครั้ง</marquee>
+        <?php
+        // connect database 
+      require_once('db/connection.php');
+
+      $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+      $mysqli->set_charset("utf8");
+
+      // check connection error 
+      if ($mysqli->connect_errno) {
+      echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+      } else {
+      // connect success, do nothng
+      }
+      $sql = "SELECT *
+         FROM announce ";
+      $result = $mysqli->query($sql);
+     
+      
+      if (!$result) {
+        echo ("Error: ". $mysqli->error);
+        
+      }
+      $row = $result->fetch_object()
+         ?> 
+        <marquee bgcolor="#CE6F5B" onmouseover="this.stop();" onmouseout="this.start();"><i class="bi bi-bell-fill"></i><?php echo $row->text ?></marquee>
         <section class="py-5">
             
         <!-- search -->

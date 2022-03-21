@@ -10,7 +10,7 @@ if (!isset($_SESSION['loggedin'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -23,6 +23,7 @@ if (!isset($_SESSION['loggedin'])) {
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/styles.css" rel="stylesheet" />
         
+        
     </head>
     <body >
         <!-- Navigation-->
@@ -32,10 +33,9 @@ if (!isset($_SESSION['loggedin'])) {
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index-articles.php">บทความ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="manage_users.php">จัดการผู้ใช้</a></li>
-                        <li class="nav-item"><a class="nav-link" href="announce.php">จัดการประกาศ</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="../index.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index-articles">บทความ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="articles.php">เพิ่มบทความ</a></li>
                      </ul>
                     
 
@@ -51,38 +51,49 @@ if (!isset($_SESSION['loggedin'])) {
             </div>
         </nav>
         <!-- Header-->
-        <header class="px-4  px-lg-5 my-5"  >
-       
+        <header class="bg-dark  py-4"  >
+        <br>
       </header>
-        <!-- Section-->
-        <section class="py-5">
+      <?php
+        // connect database 
+      require_once('../db/connection.php');
+
+      $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+      $mysqli->set_charset("utf8");
+
+      // check connection error 
+      if ($mysqli->connect_errno) {
+      echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+      } else {
+      // connect success, do nothng
+      }
+      $sql = "SELECT *
+         FROM announce ";
+      $result = $mysqli->query($sql);
+     
+      
+      if (!$result) {
+        echo ("Error: ". $mysqli->error);
+        
+      }
+      $row = $result->fetch_object()
+      ?>
+      <marquee bgcolor="#CE6F5B" onmouseover="this.stop();" onmouseout="this.start();"><i class="bi bi-bell-fill"></i><?php echo $row->text ?></marquee>
+      <section class="py-6">
         
         
         <section class="py-5 text-center container" >
         
-            <div class="col-lg-6 col-md-8 mx-auto" style=" border-radius: 5px; padding: 20px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-                <h1 class="fw-light">เขียนบทความ</h1>
+            <div class="col-lg-9 col-md-8 mx-auto" style=" border-radius: 5px; padding: 20px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+                <h1 class="fw-light">จัดการประกาศ</h1>
                 <hr>
-                <form action="../db/save_articles.php" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="user_id" value= "<?php echo  $_SESSION['user_id'] ?>">
-
-                    <div class="mb-3" >
-                        <label for="image" class="form-label">Image</label>
-                        <input type="file" accept="image/*" id="imgInput" name="file" class="form-control">
-                        <img id="previewImg" class="img-fluid rounded" />
-                    </div>
-                   
+                <form action="../db/save_announce.php" method="POST" >
                     <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" required class="form-control"  placeholder="ชื่อหัวข้อ..." maxlength="30" required>
-                    </div>
-                  
-                    <div class="mb-3">
-                        <label for="content" class="form-label">Detail</label>
-                        <textarea class="form-control" required name="body" rows="10" placeholder="รายละเอียด..." maxlength="1000" required></textarea>
+                        <label for="title" class="form-label"><b>Announce</label>
+                        <textarea class="form-control"  name="text" required   placeholder="ประกาศ..."  required></textarea>
                     </div>
                     
-                    <button class="btn btn-success" type="submit" name="submit">Create</button>
+                    <button class="btn btn-success" type="submit" name="submit" onclick="return confirm('กรุณายืนยันข้อมูล');" href="../db/save_announce.php">ยืนยัน</button>
                     <div align="left">
                     <a href="javascript:history.back()" class="btn btn-outline-info active " role="button" aria-pressed="true">ย้อนกลับ</a>
                     </div>
@@ -90,13 +101,11 @@ if (!isset($_SESSION['loggedin'])) {
             </div>
         
     </section>   
-            
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+     <!-- Bootstrap core JS-->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="../js/scripts.js"></script>
         
         
     </body>
 </html>
-

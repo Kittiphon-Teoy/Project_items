@@ -12,7 +12,7 @@
             FROM users
             WHERE username = '$username' AND passwd = md5('$passwd')";
     $result = $conn->query($sql);
-      echo $sql;
+     // echo $sql;
     //  if ($_POST['username'] == 'wittawas' and $_POST['password'] == '12345')
     
     // $result->num_rows > 0 หมายความว่า ได้ผลลัพธ์จากคำสั่ง SELECT 1 แถวขึ้นไป
@@ -38,6 +38,6 @@
       //array_push($errors, "Username or Password is incorrect");
       $_SESSION['error'] = "Wrong Username or Password";
      
-      header("location: ../index.php");
+      header("location: ../login.php");
     }
     ?>

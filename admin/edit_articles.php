@@ -3,7 +3,9 @@ session_start();
 if (!isset($_SESSION['loggedin'])) {
     header("location: login.php");
 } else {
-    //do nothing
+    if($_SESSION['user_group'] == "U"){
+        header("location: ../user_info.php"); //เเยกuser
+      }
 }
 ?>
 <!DOCTYPE html>
@@ -31,8 +33,9 @@ if (!isset($_SESSION['loggedin'])) {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">บทความ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">จัดการผู้ใช้</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index_articles.php">บทความ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="manage_users.php">จัดการผู้ใช้</a></li>
+                        <li class="nav-item"><a class="nav-link" href="announce.php">จัดการประกาศ</a></li>
                      </ul>
                     
 

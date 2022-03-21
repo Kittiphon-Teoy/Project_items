@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <title>Sign Up Form by Colorlib</title>
+    <title>Sign Up Form </title>
 
   <!-- Bootstrap icons-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -21,7 +21,7 @@
              <div class="signup-content">
                    <div class="signup-form">
                    <a href="index.php" class="col-xs-12 .col-md-8" ><h1><i class="bi bi-house-fill"></i>กลับสู่หน้าแรก</h1></a>
-                      <h2 class="form-title">Sign up</h2>
+                      <h2 class="form-title">สมัครสมาชิก</h2>
                       <!-- --form-- -->
                         <form method="POST" class="register-form" id="register-form" action="db/register_db.php" onsubmit="return formValidation()">
                             <div class="form-group">
@@ -55,13 +55,13 @@
                             </div>
                          
                             <div class="form-group form-button">
-                                <input type="submit" name="signup" id="" class="form-submit" value="Register"/>
+                                <input type="submit" name="signup" id="" class="form-submit" value="ลงทะเบียน"/>
                             </div>
                         </form>
                     </div>
                     <div class="signup-image">
                         <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
-                        <a href="login.php" class="signup-image-link">I am already member</a>
+                        <a href="login.php" class="signup-image-link">มีบัญชีอยู่แล้ว</a>
                     </div>
                 </div>
             </div>

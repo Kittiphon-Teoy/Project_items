@@ -31,21 +31,15 @@ if (!isset($_SESSION['loggedin'])) {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">บทความ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="admin/index-articles.php">บทความ</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">บริการแจ้ง</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">แจ้งหายของหาย</a></li>
-                                <li><a class="dropdown-item" href="#!">แจ้งพบของหาย</a></li>
+                                <li><a class="dropdown-item" href="create_found.php">แจ้งหายของหาย</a></li>
+                                <li><a class="dropdown-item" href="create_lost.php">แจ้งพบของหาย</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">แสดงรายการ</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">แสดงการแจ้งหายของหาย</a></li>
-                                <li><a class="dropdown-item" href="#!">แสดงการแจ้งพบของหาย</a></li>
-                            </ul>
-                        </li>
+                        
                     </ul>
                     <form class="d-flex" action="login.php">
                         <button class="btn btn-outline-dark"  type="submit">
@@ -89,28 +83,28 @@ if (!isset($_SESSION['loggedin'])) {
                 <h1 class="fw-light">แก้ไขข้อมูลส่วนตัว</h1>
                 <hr>
                
-                <form action="db/save_edit_users.php" method="POST" enctype="multipart/form-data">
+                <form action="db/save_edit_users.php" method="POST"  onsubmit="return formValidation()">
                 <input type="hidden" name="user_id" value= "<?php echo  $user_id ?>">
-
+                
                     <div  align="left" class="mb-3 ">
                         <label for="title" class="form-label"><i class="bi bi-person-circle"></i><b>Username:</b></label>
-                        <input type="text" name="user_name" required class="form-control"  value= "<?php echo $row->username;?>" maxlength="45" required>
+                        <input type="text" name="user_name" id="username" required class="form-control" placeholder="Username" value= "<?php echo $row->username;?>" maxlength="45" required>
                     </div>
                     <div  align="left" class="mb-3">
                         <label for="title" class="form-label"><i class="bi bi-person-fill"></i><b>Name:</b></label>
-                        <input type="text" name="name" required class="form-control"  value= "<?php echo $row->user_name;?>" maxlength="45" required>
+                        <input type="text" name="name" id="name" required class="form-control" placeholder="Name"  value= "<?php echo $row->user_name;?>" maxlength="45" required>
                     </div>
                     <div  align="left" class="mb-3">
                         <label for="title" class="form-label"><i class="bi bi-person-fill"></i><b>Surname:</b></label>
-                        <input type="text" name="surname" required class="form-control"  value= "<?php echo $row->user_surname;?>" maxlength="45" required>
+                        <input type="text" name="surname" id="surname" required class="form-control"  placeholder="Surname" value= "<?php echo $row->user_surname;?>" maxlength="45" required>
                     </div>
                     <div  align="left" class="mb-3">
                         <label for="title" class="form-label"><i class="bi bi-envelope-fill"></i><b>E-mail:</b></label>
-                        <input type="text" name="email" required class="form-control"  value= "<?php echo $row->email;?>" maxlength="45" required>
+                        <input type="text" name="email"  id="email" required class="form-control" placeholder="E-mail" value= "<?php echo $row->email;?>" maxlength="45" required>
                     </div>
                     <div  align="left" class="mb-3">
                         <label for="title" class="form-label"><i class="bi bi-telephone-fill"></i><b>Phone:</b></label>
-                        <input type="text" name="phone" required class="form-control"  value= "<?php echo $row->phone;?>" maxlength="45" required>
+                        <input type="text" name="phone" id="phone" required class="form-control"  placeholder="Phone" value= "<?php echo $row->phone;?>" maxlength="45" required>
                     </div>
                 
                     
@@ -121,6 +115,7 @@ if (!isset($_SESSION['loggedin'])) {
                 </form>
             </div>
         </div>
+        <script src= "js/validation.js"></script>
     </section>   
      
         
@@ -134,6 +129,7 @@ if (!isset($_SESSION['loggedin'])) {
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        
+        
     </body>
 </html>

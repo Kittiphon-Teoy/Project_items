@@ -36,6 +36,7 @@
     $stmt->bind_param("ssssss", $uname , $name, $surname , $email,$phone ,$user_id );
     $stmt->execute();
 
+    
     echo "<script> alert('เสร็จสิ้น') </script>";
     header("Refresh:0; url=../user_info.php");
    

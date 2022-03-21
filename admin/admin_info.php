@@ -67,6 +67,7 @@ if (!isset($_SESSION['loggedin'])) {
         <div align="right"class="dropdown">
         <a class="btn btn-primary" href="articles.php" role="button">เพิ่มบทความ</a>
         <a class="btn btn-warning" href="manage_users.php" role="button">จัดการผู้ใช้</a>
+        <a class="btn btn-info" href="announce.php" role="button">จัดการประกาศ</a>
         </div>
         <h4>บทความ</h4>
         <?php $q = (isset($_GET['q']) ? $_GET['q'] : ''); ?>
@@ -156,11 +157,10 @@ if($q==''){
             
       <?php
       }
-      
       ?>
-      <?php
       
-    }
+      <?php
+     }
 }else if($q!=''){
      // connect database 
      require_once('../db/connection.php');

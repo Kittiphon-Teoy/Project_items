@@ -44,15 +44,15 @@ session_start();
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">บริการแจ้ง</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">แจ้งพบของหาย</a></li>
-                                <li><a class="dropdown-item" href="create_lost.php">แจ้งของหาย</a></li>
+                                <li><a class="dropdown-item" href="../create_found.php">แจ้งพบของหาย</a></li>
+                                <li><a class="dropdown-item" href="../create_lost.php">แจ้งของหาย</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">แสดงรายการ</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">แสดงการแจ้งพบของหาย</a></li>
-                                <li><a class="dropdown-item" href="#!">แสดงการแจ้งของหาย</a></li>
+                                <li><a class="dropdown-item" href="../index2.php">แสดงการแจ้งพบของหาย</a></li>
+                                <li><a class="dropdown-item" href="../index.php">แสดงการแจ้งของหาย</a></li>
                             </ul>
                         </li>
                         <?php

@@ -31,11 +31,11 @@ if (!isset($_SESSION['loggedin'])) {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">บทความ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="admin/index-articles.php">บทความ</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">บริการแจ้ง</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">แจ้งพบของหาย</a></li>
+                                <li><a class="dropdown-item" href="create_found.php">แจ้งพบของหาย</a></li>
                                 <li><a class="dropdown-item" href="create_lost.php">แจ้งของหาย</a></li>
                             </ul>
                         </li>

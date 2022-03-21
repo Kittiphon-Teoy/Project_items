@@ -69,13 +69,13 @@ function formValidation() {
   //check phone
    if(phone.value == "") {
     phone.style.borderColor = "red"
-    error = "กรุณาป้อน phone\n";
+    error = "กรุณาป้อน หมายเลขโทรศัพท์\n";
     alert(error);
     phone.focus();
     return false;
   }else if(!phone.value.match(number)){
     phone.style.borderColor = "red"
-    error = "ตัสเลขเท่านั้น\n";
+    error = "รูปแบบผิด กรุณากรอกใหม่\n";
     alert(error);
     phone.focus();
     return false;
