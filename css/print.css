@@ -1,12 +1,5 @@
 
-hr {
-    display: block;
-    height: 1px;
-    background: transparent;
-    width: 100%;
-    border: none;
-    border-top: solid 1px rgb(19, 15, 15);
-}
+
 @media print {
     .noPrint{
       display:none;

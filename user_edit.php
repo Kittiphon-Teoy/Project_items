@@ -41,10 +41,16 @@ if (!isset($_SESSION['loggedin'])) {
                         </li>
                         
                     </ul>
-                    <form class="d-flex" action="login.php">
+                    <form class="d-flex" action="user_info.php">
                         <button class="btn btn-outline-dark"  type="submit">
+                        <i class="bi bi-person-circle"></i> <b><?php echo $_SESSION["username"]; ?></b>  
+                        </button>
+                    </form>
+                    &nbsp; 
+                    <form class="d-flex" action="db/logout.php">
+                        <button class="btn btn-outline-danger"  type="submit">
                         <i class="bi bi-box-arrow-in-left"></i>
-                            Login
+                            Logout
                         
                         </button>
                     </form>

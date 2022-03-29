@@ -59,11 +59,10 @@ session_start();
                         if (isset($_SESSION['loggedin'])) { $user_id = $_SESSION['user_id']; ?>
                     <form class="d-flex" action="user_info.php">
                         <button class="btn btn-outline-dark"  type="submit">
-                        <i class="bi bi-people-fill"></i>
-                            บัญชี
-                       </button>
+                        <i class="bi bi-person-circle"></i> <b><?php echo $_SESSION["username"]; ?></b>  
+                        </button>
                     </form>
-                    &nbsp;
+                    &nbsp; 
                     <form class="d-flex" action="db/logout.php">
                         <button class="btn btn-outline-danger"  type="submit">
                         <i class="bi bi-box-arrow-in-left"></i>
@@ -128,8 +127,9 @@ if(isset($_REQUEST['id'])){
                     <span class="text-muted noPrint">
                     <?php echo $row->date ?>
                     </span>
-                    
-                    <img src="upload/<?php echo $row->image ?>" class="img-fluid rounded mt-3" alt="" >
+                    <div class="text-center">
+                    <img src="upload/<?php echo $row->image ?>" class="img-fluid rounded mt-3 " style="width:650;height:500px;text-align:center;" >
+                    </div>
                     <p class="my-4"><?php echo nl2br($row->detail); ?></p>
                 </div>
                 <h5>reward: <?php echo $row->reward ?></h5>

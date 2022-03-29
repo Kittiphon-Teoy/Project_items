@@ -87,7 +87,7 @@ if(isset($_REQUEST['id'])){
             <div class="col-lg-6 col-md-8 mx-auto" style=" border-radius: 5px; padding: 20px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
                 <h1 class="fw-light">แก้ไขการแจ้งของหาย</h1>
                 <hr>
-                <img src="upload/<?php echo $row->image ?>" class="img-fluid rounded mt-4" alt="" >
+                <img src="upload/<?php echo $row->image ?>" class="img-fluid rounded mt-4"style="width:450;height:300px;text-align:center;" >
                 <form action="db/save_edit_lost.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="user_id" value= "<?php echo  $_SESSION['user_id'] ?>">
                 <input type="hidden" name="ID_item" value= "<?php echo  $uid ?>">
