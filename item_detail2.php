@@ -117,8 +117,8 @@ if(isset($_REQUEST['id'])){
       <section class="py-5 container" id="printJS-form">
       
       <center><h2>รายละเอียด</h2></center>
-        <div class="row py-lg-5" >
-            <div class="col-lg-6 col-md-8 mx-auto">
+        <div class="row py-lg-5"  >
+            <div class="col-lg-6 col-md-8 mx-auto" >
                
                 <h2 class="fw-light"><?php echo $row->name ?></h2>
                 <hr>
@@ -130,6 +130,19 @@ if(isset($_REQUEST['id'])){
                     <div class="text-center">
                     <img src="upload/<?php echo $row->image ?>" class="img-fluid rounded mt-3" style="width:650;height:500px;text-align:center;">
                     </div>
+                   
+                    <div class="row mt-2">
+                    <h5 class="my-4"><b>ข้อมูลผู้แจ้ง</b></h5>
+                    <label for="title" class="form-label">Name-Surname: <?php echo $row->namesur ?></label>
+                    <div class="col">
+                        <label for="title" class="form-label">E-mail: <?php echo $row->mail ?></label>
+                    </div>
+                    <div class="col">
+                        <label for="title" class="form-label">Phone: <?php echo $row->nphone ?></label>
+                    </div>
+                    </div>
+                   
+                    <h5 class="my-4"><b>เนื้อความ</b></h5>
                     <p class="my-4"><?php echo nl2br($row->detail);  ?></p>
                 </div>
                

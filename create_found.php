@@ -80,14 +80,37 @@ if (!isset($_SESSION['loggedin'])) {
                         <img id="previewImg" class="img-fluid rounded" />
                     </div>
                     <div class="mb-3">
-                        <label for="title" class="form-label">Name</label>
+                        <label for="title" class="form-label">Object</label>
                         <input type="text" name="name" required class="form-control"  placeholder="ชื่อสิ่งของ..." maxlength="45" required>
                     </div>
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" name="title" required class="form-control"  placeholder="ชื่อหัวข้อ..." maxlength="30" required>
                     </div>
-                  
+                    
+                    
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Name-Surname</label>
+                        <input type="text" name="namesur" required class="form-control"  placeholder="ชื่อ-สกุลผู้แจ้ง..." maxlength="45" required>
+                    </div>
+
+                    <div class=" mb-3">
+                        <div class="row mt-2">
+                        <div class="col">
+                        <label for="title" class="form-label">E-mail</label>
+                        <input type="email" name="mail" required class="form-control"  placeholder="อีเมล..." maxlength="45" required>
+                        </div>
+                        <div class="col">
+                        <label for="title" class="form-label">Phone</label>
+                        <input type="tel" name="nphone" required class="form-control"  placeholder="เบอร์โทร..." maxlength="10" required>
+                        
+                        </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
                     <div class="mb-3">
                         <label for="content" class="form-label">Detail</label>
                         <textarea class="form-control" required name="detail" rows="10" placeholder="รายละเอียด..." maxlength="1000" required></textarea>

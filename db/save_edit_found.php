@@ -13,9 +13,11 @@ $user_id = $_POST['user_id'];
 $ID_item = $_POST['ID_item'];
 $name = $_POST['name'];
 $title = $_POST['title'];
-
 $detail = $_POST['detail'];
 
+$namesur =$_POST['namesur'];
+$mail =$_POST['mail'];
+$nphone =$_POST['nphone'];
 
 if(isset($_POST['submit'])){
 
@@ -42,14 +44,16 @@ if(isset($_POST['submit'])){
             image = ?,
             name = ?,
             title = ?,
-            
-            detail = ?
+            detail = ?,
+            namesur = ?,
+            mail = ?,
+            nphone = ?
             WHERE ID_item = ?";
             
             
             
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("ssssss", $user_id,$image, $name,$title,$detail,$ID_item);
+            $stmt->bind_param("sssssssss", $user_id,$image, $name,$title,$detail,$namesur,$mail,$nphone,$ID_item);
             $stmt->execute();
             $a="pass";    
 
@@ -79,13 +83,16 @@ if($a!="pass"){
     name = ?,
     title = ?,
     date = ?,
-    detail = ?
+    detail = ?,
+    namesur = ?,
+    mail = ?,
+    nphone = ?
     WHERE ID_item = ?";
     
     
     
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("ssssss", $user_id, $name,$title,$date,$detail,$ID_item);
+    $stmt->bind_param("sssssssss", $user_id, $name,$title,$date,$detail,$namesur,$mail,$nphone,$ID_item);
     $stmt->execute();
    echo "<script> alert('อัพโหลดเสร็จสิ้น') </script>";
    header("Refresh:0; url=../user_info2.php");

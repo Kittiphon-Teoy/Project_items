@@ -11,9 +11,10 @@ $mysqli->set_charset("utf8");
 $user_id = $_POST['user_id'];
 $name = $_POST['name'];
 $title = $_POST['title'];
-
 $detail = $_POST['detail'];
-
+$namesur =$_POST['namesur'];
+$mail =$_POST['mail'];
+$nphone =$_POST['nphone'];
 
 if(isset($_POST['submit'])){
 
@@ -30,10 +31,10 @@ if(isset($_POST['submit'])){
           
 
             $sql = "INSERT 
-            INTO item_found (user_id,image,name,title,detail) 
-            VALUES (?, ?, ?, ?, ?)";
+            INTO item_found (user_id,image,name,title,detail,namesur,mail,nphone) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("sssss", $user_id,$image, $name,$title,$detail);
+            $stmt->bind_param("ssssssss", $user_id,$image, $name,$title,$detail,$namesur,$mail,$nphone);
             $stmt->execute();
 
 
@@ -49,7 +50,7 @@ if(isset($_POST['submit'])){
         header("Refresh:0;../user_info2.php");
     }  
 }else {
-    header("location: ../user_info2.php");
+   header("location: ../user_info2.php");
 }
 
 
