@@ -186,10 +186,10 @@ if($q==''){
      // select data from tables
      // $limit = ($_GET['limit']<>"")? $_GET['limit'] : 10;
 
-     
+     $user_id = $_SESSION['user_id'];
      $sql = "SELECT *
        FROM item_found il INNER JOIN users u
-       ON user_id = u.ID_users 
+       ON user_id = u.ID_users AND user_id=$user_id
        WHERE title LIKE '%$q%' OR name LIKE '%$q%'
        ORDER BY date DESC";
      $result = $mysqli->query($sql);

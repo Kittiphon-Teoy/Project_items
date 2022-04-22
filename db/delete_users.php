@@ -24,7 +24,7 @@ if (isset($_REQUEST['id'])) {
     $stmt->execute();
 
     echo "<script> alert('ลบผู้ใช้เรียบร้อย') </script>";
-    header("Refresh:0; ../user_info.php");
+    header("Refresh:0; ../admin/manage_users.php");
 }else {
     header("location: ../user_info.php");
 }

@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
             INTO item_found (user_id,image,name,title,detail) 
             VALUES (?, ?, ?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("ssssss", $user_id,$image, $name,$title,$detail);
+            $stmt->bind_param("sssss", $user_id,$image, $name,$title,$detail);
             $stmt->execute();
 
 

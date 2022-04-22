@@ -64,7 +64,7 @@ session_start();
 
                     <?php 
                         if (isset($_SESSION['loggedin'])) { $user_id = $_SESSION['user_id']; ?>
-                    <form class="d-flex" action="user_info.php">
+                    <form class="d-flex" action="../user_info.php">
                         <button class="btn btn-outline-dark"  type="submit">
                         <i class="bi bi-people-fill"></i>
                             บัญชี

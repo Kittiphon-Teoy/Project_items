@@ -37,8 +37,8 @@ if(isset($_POST['submit'])){
             $stmt->execute();
 
 
-                // echo "<script> alert('อัพโหลดเสร็จสิ้น') </script>";
-                // header("Refresh:0; url=../user_info.php");
+                echo "<script> alert('อัพโหลดเสร็จสิ้น') </script>";
+                header("Refresh:0; url=../user_info.php");
         }
         } else {
             echo "<script> alert('ไฟล์ภาพของคุณมีขนาดใหญ่เกิน 10 MB') </script>";
